@@ -1,0 +1,101 @@
+.auth-page {
+  display: flex;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.auth-page-welcome-section {
+  width: 65vw;
+  height: 100vh;
+  background-color: #17a2b8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-image {
+  position: relative;
+  margin-top: 20vh;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+}
+
+.background-image {
+  height: 35vh;
+  position: absolute;
+}
+
+.welcome-page-icon {
+  position: absolute;
+  width: 14vw;
+  height: 37vh;
+  top: 5vh;
+}
+
+.welcome-text {
+  margin-top: 46vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
+}
+.welcome-text > div:nth-child(1) {
+  color: white;
+  font-size: 2em;
+  font-weight: 600;
+}
+.welcome-text > div:nth-child(2) {
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.auth-section {
+  width: 35vw;
+  height: 100vh;
+  flex-direction: column;
+  gap: 3vh;
+  color: #828282;
+}
+
+.auth-section .heading {
+  font-size: 1.9em;
+  font-weight: 600;
+  color: #343434;
+}
+
+.auth-section > form {
+  margin-top: 3vh;
+  flex-direction: column;
+  gap: 2.5vh;
+  width: fit-content;
+}
+
+.input-fields > input {
+  width: 18vw;
+  padding: 0.6em;
+  font-size: 1.4em;
+  color: #828282;
+  border: 1px solid #d0d0d0;
+  border-radius: 0.5em;
+}
+.input-fields > input::placeholder {
+  color: #828282;
+  font-size: 0.8em;
+}
+
+.submit-button {
+  margin-top: 3vh;
+  font-size: 1.2em;
+  padding: 0.8em;
+  width: 16vw;
+  color: #ffffff;
+  background-color: #17a2b8;
+}
+
+.auth-button {
+  font-size: 1.2em;
+  width: 15vw;
+  color: #17a2b8;
+  border: 1px solid #17a2b8;
+}
