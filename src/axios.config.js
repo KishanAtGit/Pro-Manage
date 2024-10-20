@@ -3,8 +3,8 @@ import axios from 'axios';
 // const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 const apiClient = axios.create({
-  baseURL: `http://localhost:5000/api/`,
-  // baseURL: `https://pro-manage-backend-ntqu.onrender.com/api/`,
+  // baseURL: `http://localhost:5000/api/`,
+  baseURL: `https://pro-manage-backend-ntqu.onrender.com/api/`,
 });
 
 apiClient.interceptors.request.use(

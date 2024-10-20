@@ -1,0 +1,95 @@
+.dashboard {
+  display: flex;
+  font-family: poppins;
+}
+
+.left-menus {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 11vw;
+  box-shadow: -5px 0px 8px 9px #edf5fe;
+}
+
+.left-menus .heading {
+  gap: 0.5vw;
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-top: 3vh;
+}
+
+.left-menus .menus {
+  flex-direction: column;
+  gap: 0.5vh;
+  margin-top: 6vh;
+}
+.left-menus .menus > div {
+  width: -webkit-fill-available;
+  justify-content: flex-start;
+  gap: 0.5vw;
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #707070;
+  padding: 1em 0;
+}
+.left-menus .menus > div:hover {
+  background-color: #4391ed1a;
+}
+.left-menus .menus > div > img {
+  width: 1.2vw;
+  margin-left: 1.8vw;
+}
+
+.left-menus .logout {
+  width: fit-content;
+  justify-content: flex-start;
+  margin-top: 58vh;
+  font-size: 1.2em;
+  font-weight: 500;
+  gap: 0.5vw;
+  color: #cf3636;
+}
+.left-menus .logout > img {
+  width: 1.2vw;
+  margin-left: 1.8vw;
+}
+
+.logout-delete-modal {
+  position: absolute;
+  align-self: center;
+  justify-self: center;
+  inset: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  border-radius: 1em;
+  outline: none;
+  width: 15vw;
+  height: 13vh;
+  flex-direction: column;
+  gap: 1vh;
+  padding: 3em 0.5em;
+  font-family: poppins;
+  font-weight: 600;
+}
+
+.logout-delete-modal .modal-content {
+  font-size: 1em;
+  margin-bottom: 2vh;
+}
+
+.logout-delete-modal .confirm-button {
+  background-color: #17a2b8;
+  color: #ffffff;
+  width: 11vw;
+  font-weight: 600;
+}
+.logout-delete-modal .confirm-button:hover {
+  background-color: #178090;
+}
+
+.logout-delete-modal .cancel-button {
+  border: 1px solid #cf3636;
+  color: #cf3636;
+  width: 11vw;
+  font-weight: 600;
+}
