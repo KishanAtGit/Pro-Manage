@@ -29,3 +29,7 @@ a {
 .error {
   color: #db371f;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}

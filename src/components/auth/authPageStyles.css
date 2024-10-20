@@ -71,17 +71,34 @@
   width: fit-content;
 }
 
-.input-fields > input {
-  width: 18vw;
-  padding: 0.6em;
-  font-size: 1.4em;
-  color: #828282;
+.input-fields {
+  width: 17vw;
+  padding: 0.4em;
   border: 1px solid #d0d0d0;
   border-radius: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.input-fields > input {
+  width: 13.5vw;
+  font-size: 1.4em;
+  color: #828282;
+  border: none;
 }
 .input-fields > input::placeholder {
   color: #828282;
   font-size: 0.8em;
+}
+.input-fields > input:focus {
+  outline: none;
+}
+
+.input-field-icon-1 {
+  height: 3.5vh;
+}
+.input-field-icon-2 {
+  height: 3vh;
 }
 
 .submit-button {
