@@ -1,5 +1,5 @@
-import welcomePageIconBackground from '../../assets/loginPageIcons/welcomePageIconBackground.png';
-import welcomePageIcon from '../../assets/loginPageIcons/welcomePageIcon.png';
+import welcomePageIconBackground from '../assets/loginPageIcons/welcomePageIconBackground.png';
+import welcomePageIcon from '../assets/loginPageIcons/welcomePageIcon.png';
 
 export default function WelcomeSection() {
   return (

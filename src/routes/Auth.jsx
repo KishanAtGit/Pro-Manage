@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import WelcomeSection from './WelcomeSection';
-import Register from './Register';
-import Login from './Login';
+import WelcomeSection from '../components/WelcomeSection';
+import Register from '../components/auth/Register';
+import Login from '../components/auth/Login';
 
-import './authPageStyles.css';
+import '../components/auth/authPageStyles.css';
 
-export default function AuthPage() {
+export default function Auth() {
   return (
     <div className='auth-page'>
       <WelcomeSection />

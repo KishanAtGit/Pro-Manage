@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Menus from './Menus';
-import Board from './Board';
-import Analytics from './Analytics';
-import Settings from './Settings';
+import Menus from '../components/Private/Menus';
+import Board from '../components/Private/Board';
+import Analytics from '../components/Private/Analytics';
+import Settings from '../components/Private/Settings';
 
 export default function Dashboard() {
   return (

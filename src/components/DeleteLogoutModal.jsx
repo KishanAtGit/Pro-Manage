@@ -1,6 +1,5 @@
 import Modal from 'react-modal';
-import { useContext } from 'react';
-import { AppContext } from '../App';
+import { useAppContext } from '../context/AppContext';
 
 export default function DeleteLogoutModal({
   modalIsOpen,
@@ -9,7 +8,7 @@ export default function DeleteLogoutModal({
   modalType,
   modalFunction,
 }) {
-  const { customModalStyles } = useContext(AppContext);
+  const { customModalStyles } = useAppContext();
 
   return (
     <Modal

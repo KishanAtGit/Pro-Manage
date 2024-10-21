@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import React from 'react';
-import AuthForm from './AuthForm';
 import { loginUser } from '../../services/api.users';
+import { useAuth } from '../../context/AuthContext';
+import AuthForm from './AuthForm';
 
 import emailIcon from '../../assets/loginPageIcons/emailIcon.png';
 import lockIcon from '../../assets/loginPageIcons/lockIcon.png';
@@ -10,6 +10,7 @@ import viewPasswordIcon from '../../assets/loginPageIcons/viewPasswordIcon.png';
 
 export default function Login() {
   const navigate = useNavigate();
+  const { userLogin } = useAuth();
 
   const loginFields = [
     {
@@ -31,6 +32,7 @@ export default function Login() {
   const onSubmit = async data => {
     const res = await loginUser(data);
     if (res && res.status === 202) {
+      userLogin();
       navigate('/dashboard');
     }
   };

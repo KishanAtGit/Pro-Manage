@@ -1,27 +1,18 @@
-import { createContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import AuthProvider from './context/AuthContext';
+import AppProvider from './context/AppContext';
+import PrivateRoute from './routes/PrivateRoute';
 import NotFoundPage from './components/PageNotFound';
-import Authpage from './components/auth/AuthPage';
-import Dashboard from './components/Dashboard';
+import Authpage from './routes/Auth';
+import Dashboard from './routes/Dashboard';
 
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const AppContext = createContext();
-
 export default function App() {
-  const customModalStyles = {
-    overlay: {
-      backgroundColor: '#303D438C',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-  };
-
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Navigate to='/auth' />} />
@@ -29,15 +20,17 @@ export default function App() {
           <Route
             path='/dashboard/*'
             element={
-              <AppContext.Provider value={{ customModalStyles }}>
-                <Dashboard />
-              </AppContext.Provider>
+              <PrivateRoute>
+                <AppProvider>
+                  <Dashboard />
+                </AppProvider>
+              </PrivateRoute>
             }
           />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <ToastContainer />
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
 }

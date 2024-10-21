@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import appLogo from '../assets/menuIcons/appLogo.png';
-import layout from '../assets/menuIcons/layout.png';
-import database from '../assets/menuIcons/database.png';
-import settings from '../assets/menuIcons/settings.png';
-import Logout from '../assets/menuIcons/Logout.png';
-import DeleteLogoutModal from './DeleteLogoutModal';
+import { useAuth } from '../../context/AuthContext';
+import appLogo from '../../assets/menuIcons/appLogo.png';
+import layout from '../../assets/menuIcons/layout.png';
+import database from '../../assets/menuIcons/database.png';
+import settings from '../../assets/menuIcons/settings.png';
+import Logout from '../../assets/menuIcons/Logout.png';
+import DeleteLogoutModal from '../DeleteLogoutModal';
 
 export default function Menus() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { userLogout } = useAuth();
 
   const [selectedMenu, setSelectedMenu] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const logout = () => {
-    localStorage.clear();
+    userLogout();
     navigate('/auth/login');
   };
 
