@@ -3,6 +3,11 @@
   font-family: poppins;
 }
 
+.right-contents {
+  width: 89vw;
+  overflow: auto;
+}
+
 .left-menus {
   display: flex;
   flex-direction: column;

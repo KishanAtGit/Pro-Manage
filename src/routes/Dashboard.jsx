@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Menus from '../components/Private/Menus';
-import Board from '../components/Private/Board';
+import Board from '../components/Private/board/Board';
 import Analytics from '../components/Private/Analytics';
 import Settings from '../components/Private/Settings';
 

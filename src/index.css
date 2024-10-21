@@ -33,3 +33,12 @@ a {
 .cursor-pointer {
   cursor: pointer;
 }
+
+::-webkit-scrollbar {
+  height: 1em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9cb7c5;
+  border-radius: 0.6em;
+}
