@@ -3,7 +3,7 @@
   padding-bottom: 0;
 }
 
-.board .heading {
+.board .board-heading {
   position: absolute;
   top: 5vh;
   font-size: 1.5em;
@@ -51,15 +51,59 @@
   gap: 2vw;
 }
 
-.board .to-do-section .to-do-card {
-  width: 22vw;
-  height: 78vh;
+.board .to-do-section > div:last-child {
+  margin-right: 3em;
+}
+
+.board .to-do-section .to-do-category-box {
+  width: 19vw;
+  height: 72vh;
   background-color: #eef2f5;
   border-radius: 1em;
   display: flex;
+  align-items: center;
   flex-direction: column;
+  gap: 3vh;
+  padding-top: 2em;
+  overflow: auto;
 }
 
-.board .to-do-section > div:last-child {
-  margin-right: 3em;
+.board .to-do-section .to-do-category-box .head-section {
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board .to-do-section .to-do-category-box .category-heading {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+.board .to-do-section .to-do-category-box .todo-icons {
+  gap: 1vw;
+}
+
+.collapse-todos,
+.add-todos {
+  height: 2vh;
+  width: 2vh;
+}
+
+.board .to-do-section .to-do-category-box .todos-section {
+  width: -webkit-fill-available;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.board .to-do-section .to-do-category-box .todos-section > div {
+  margin-bottom: 1vh;
+}
+
+.board .to-do-section .to-do-category-box .todo-cards {
+  width: 93%;
+  height: 50vh;
+  background-color: white;
+  padding: 1em;
+  border-radius: 1em;
 }

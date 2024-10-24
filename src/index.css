@@ -36,9 +36,20 @@ a {
 
 ::-webkit-scrollbar {
   height: 1em;
+  width: 1em;
+  background-color: #d6eaf4;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #9cb7c5;
   border-radius: 0.6em;
+}
+
+.no-scrollbar {
+  overflow: hidden !important;
+}
+
+.margin-left-right {
+  margin-left: 1vw;
+  margin-right: 1vw;
 }

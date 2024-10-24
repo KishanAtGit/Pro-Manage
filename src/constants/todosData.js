@@ -21,28 +21,28 @@ export const todosDataFromConstants = [
     ],
     status: 'todo',
   },
-  {
-    id: 2,
-    title: 'To Do 2',
-    checklist: [
-      {
-        id: 1,
-        description: 'To Do 1 checklist item',
-        checked: true,
-      },
-      {
-        id: 2,
-        description: 'To Do 2 checklist item 2',
-        checked: true,
-      },
-      {
-        id: 3,
-        description: 'To Do 2 checklist item 3',
-        checked: true,
-      },
-    ],
-    status: 'backlog',
-  },
+  // {
+  //   id: 2,
+  //   title: 'To Do 2',
+  //   checklist: [
+  //     {
+  //       id: 1,
+  //       description: 'To Do 1 checklist item',
+  //       checked: true,
+  //     },
+  //     {
+  //       id: 2,
+  //       description: 'To Do 2 checklist item 2',
+  //       checked: true,
+  //     },
+  //     {
+  //       id: 3,
+  //       description: 'To Do 2 checklist item 3',
+  //       checked: true,
+  //     },
+  //   ],
+  //   status: 'backlog',
+  // },
   {
     id: 3,
     title: 'To Do 3',
