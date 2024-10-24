@@ -27,7 +27,7 @@ export default function AppProvider({ children }) {
   const categorizeTodos = () => {
     const backlog = todosData.filter(todo => todo.status === 'backlog');
     const todos = todosData.filter(todo => todo.status === 'todo');
-    const inProgress = todosData.filter(todo => todo.status === 'inProgress');
+    const inProgress = todosData.filter(todo => todo.status === 'in-Progress');
     const done = todosData.filter(todo => todo.status === 'done');
 
     setBacklogTodos(backlog);
@@ -39,6 +39,8 @@ export default function AppProvider({ children }) {
   useEffect(() => {
     categorizeTodos();
   }, [todosData]);
+
+  console.log(todosData, 'todosData-app context');
 
   return (
     <AppContext.Provider

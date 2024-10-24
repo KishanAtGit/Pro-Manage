@@ -4,7 +4,7 @@ import addTodosIcon from '../../../assets/boardIcons/addTodosIcon.png';
 import collapseTodos from '../../../assets/boardIcons/collapseTodos.png';
 
 export default function ToDoCategory({ categoryHeading, toDos }) {
-  console.log(toDos, 'todos');
+  console.log(toDos, `todos-${categoryHeading}`);
   const [isScrollable, setIsScrollable] = useState(false);
   const containerRef = useRef(null);
 
@@ -18,7 +18,7 @@ export default function ToDoCategory({ categoryHeading, toDos }) {
 
   return (
     <div className='to-do-category-box'>
-      <div className='head-section margin-left-right'>
+      <div className='head-section'>
         <div className='category-heading'>{categoryHeading}</div>
         <div className='todo-icons flex-center'>
           {categoryHeading === 'To do' && (
@@ -37,14 +37,11 @@ export default function ToDoCategory({ categoryHeading, toDos }) {
       </div>
       <div
         ref={containerRef}
-        className={`todos-section margin-left-right ${
-          !isScrollable ? 'no-scrollbar' : ''
-        }`}
+        className={`todos-section ${!isScrollable ? 'no-scrollbar' : ''}`}
       >
         {toDos.map(todo => (
-          <ToDo key={todo._id} todo={todo} />
+          <ToDo key={todo.id} todo={todo} />
         ))}
-        <ToDo />
       </div>
     </div>
   );

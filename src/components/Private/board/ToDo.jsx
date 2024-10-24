@@ -1,3 +1,3 @@
-export default function ToDo() {
-  return <div className='todo-cards'>ToDo</div>;
+export default function ToDo({ todo }) {
+  return <div className='todo-cards'>{todo.title}</div>;
 }

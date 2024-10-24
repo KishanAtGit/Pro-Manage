@@ -22,10 +22,22 @@ export default function Board() {
         <div>week filter</div>
       </div>
       <div className='to-do-section'>
-        <ToDoCategory categoryHeading={'Backlog'} toDos={backlogTodos} />
-        <ToDoCategory categoryHeading={'To do'} toDos={todos} />
-        <ToDoCategory categoryHeading={'In progress'} toDos={inProgressToDos} />
-        <ToDoCategory categoryHeading={'Done'} toDos={doneTodos} />
+        {/* to Only render the components when todo arrays are not empty */}
+        {backlogTodos.length > 0 && (
+          <ToDoCategory categoryHeading={'Backlog'} toDos={backlogTodos} />
+        )}
+        {todos.length > 0 && (
+          <ToDoCategory categoryHeading={'To do'} toDos={todos} />
+        )}
+        {inProgressToDos.length > 0 && (
+          <ToDoCategory
+            categoryHeading={'In progress'}
+            toDos={inProgressToDos}
+          />
+        )}
+        {doneTodos.length > 0 && (
+          <ToDoCategory categoryHeading={'Done'} toDos={doneTodos} />
+        )}
       </div>
     </div>
   );
