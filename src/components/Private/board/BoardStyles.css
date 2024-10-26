@@ -101,10 +101,142 @@
   margin-bottom: 1vh;
 }
 
-.board .to-do-section .to-do-category-box .todo-cards {
-  width: 90%;
-  height: 30vh;
+/* todo card styles */
+.board .to-do-section .to-do-category-box .todo-card {
+  width: 89%;
   background-color: white;
-  padding: 1em;
+  padding: 2em 1.5em;
   border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-card .todo-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1vw;
+  margin-bottom: 1vh;
+}
+
+.todo-card .todo-heading .todo-heading-left-contents {
+  display: flex;
+  align-items: center;
+  gap: 0.3vw;
+}
+
+.todo-card .todo-heading .todo-heading-left-contents .priority-icon {
+  height: 1.1vh;
+}
+
+.todo-card .todo-heading .todo-heading-left-contents .assigned-to {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todo-card .todo-heading .todo-heading-left-contents .assigned-to > img {
+  height: 2.4vh;
+}
+.todo-card .todo-heading .todo-heading-left-contents .assigned-to > span {
+  position: absolute;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.todo-card .todo-heading .todo-heading-right-contents {
+  display: flex;
+}
+
+.todo-card .todo-title {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-bottom: 2vh;
+}
+
+.todo-card .todo-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+.todo-card .todo-checklist .checklist-heading-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-card .todo-checklist .checklist-heading-section .checklist-heading {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+.todo-card .todo-checklist .checklist-heading-section img {
+  height: 2.7vh;
+  cursor: pointer;
+}
+
+.todo-card .todo-checklist .checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+.todo-card .todo-checklist .checklist .checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  font-size: 1.2em;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.5em;
+  padding: 0.5em;
+}
+
+.todo-card .todo-checklist .checklist .checklist-item input[type='checkbox'] {
+  display: none;
+}
+
+.todo-card .todo-checklist .checklist .checklist-item .checkmark {
+  width: 1.4em;
+  height: 1.2em;
+  border: 2px solid #e2e2e2;
+  border-radius: 5px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.todo-card
+  .todo-checklist
+  .checklist
+  .checklist-item
+  input[type='checkbox']:checked
+  + .checkmark {
+  background-color: #17a2b8;
+}
+
+.todo-card
+  .todo-checklist
+  .checklist
+  .checklist-item
+  input[type='checkbox']:checked
+  + .checkmark::after {
+  content: '';
+  position: absolute;
+  top: 0em;
+  left: 0.5em;
+  width: 0.3em;
+  height: 1em;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.todo-card
+  .todo-checklist
+  .checklist
+  .checklist-item
+  .checklist-item-description {
+  width: -webkit-fill-available;
+  text-wrap: wrap;
 }

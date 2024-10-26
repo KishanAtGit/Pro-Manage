@@ -2,6 +2,8 @@ export const todosDataFromConstants = [
   {
     id: 1,
     title: 'To Do 1',
+    priority: 'high',
+    assignedTo: 'UserId',
     checklist: [
       {
         id: 1,
@@ -24,6 +26,8 @@ export const todosDataFromConstants = [
   {
     id: 2,
     title: 'To Do 2',
+    priority: 'moderate',
+    assignedTo: 'UserId',
     checklist: [
       {
         id: 1,
@@ -37,8 +41,18 @@ export const todosDataFromConstants = [
       },
       {
         id: 3,
-        description: 'To Do 2 checklist item 3',
+        description: 'To Do 2 checfgfdsgbvd gstdsrf hgedr ed klist item 3',
+        checked: false,
+      },
+      {
+        id: 4,
+        description: 'To Do 2 checklist item 2',
         checked: true,
+      },
+      {
+        id: 5,
+        description: 'To Do 2 csfgbvds  yed erd rehecklist item 3',
+        checked: false,
       },
     ],
     status: 'backlog',
@@ -46,6 +60,8 @@ export const todosDataFromConstants = [
   {
     id: 3,
     title: 'To Do 3',
+    priority: 'low',
+    assignedTo: '',
     checklist: [
       {
         id: 1,
@@ -55,11 +71,12 @@ export const todosDataFromConstants = [
       {
         id: 2,
         description: 'To Do 4 checklist item 2',
-        checked: true,
+        checked: false,
       },
       {
         id: 3,
-        description: 'To Do 5 checklist item 3',
+        description:
+          'To Do 5 cs ghsiuiuerdui giuedu iedoiu hguoiedugihedoi ghuoiehecklist item 3',
         checked: true,
       },
     ],
@@ -68,11 +85,13 @@ export const todosDataFromConstants = [
   {
     id: 4,
     title: 'To Do 4',
+    priority: 'moderate',
+    assignedTo: 'UserId',
     checklist: [
       {
         id: 1,
         description: 'To Do 3 checklist item',
-        checked: true,
+        checked: false,
       },
       {
         id: 2,
@@ -82,7 +101,7 @@ export const todosDataFromConstants = [
       {
         id: 3,
         description: 'To Do 5 checklist item 3',
-        checked: true,
+        checked: false,
       },
     ],
     status: 'in-Progress',
@@ -90,6 +109,8 @@ export const todosDataFromConstants = [
   {
     id: 5,
     title: 'To Do 5',
+    priority: 'high',
+    assignedTo: 'UserId',
     checklist: [
       {
         id: 1,
@@ -112,6 +133,8 @@ export const todosDataFromConstants = [
   {
     id: 6,
     title: 'To Do 6',
+    priority: 'high',
+    assignedTo: 'UserId',
     checklist: [
       {
         id: 1,
@@ -134,11 +157,13 @@ export const todosDataFromConstants = [
   {
     id: 7,
     title: 'To Do 7',
+    priority: 'low',
+    assignedTo: 'UserId',
     checklist: [
       {
         id: 1,
         description: 'To Do 7 checklist item',
-        checked: true,
+        checked: false,
       },
       {
         id: 2,
@@ -156,6 +181,8 @@ export const todosDataFromConstants = [
   {
     id: 8,
     title: 'To Do 8',
+    priority: 'moderate',
+    assignedTo: 'UserId',
     checklist: [
       {
         id: 1,
@@ -171,6 +198,11 @@ export const todosDataFromConstants = [
         id: 3,
         description: 'To Do 9 checklist item 3',
         checked: true,
+      },
+      {
+        id: 4,
+        description: 'To Do 9 checklist item 3',
+        checked: false,
       },
     ],
     status: 'todo',
