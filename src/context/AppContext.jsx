@@ -16,8 +16,6 @@ export default function AppProvider({ children }) {
     },
   };
 
-  //temp data from constants
-  // let todosData = todosDataFromConstants;
   const userName = localStorage.getItem('name');
 
   const [backlogTodos, setBacklogTodos] = useState([]);
@@ -25,17 +23,7 @@ export default function AppProvider({ children }) {
   const [inProgressToDos, setInProgressToDos] = useState([]);
   const [doneTodos, setDoneTodos] = useState([]);
 
-  // const categorizeTodos = () => {
-  //   const backlog = todosData.filter(todo => todo.status === 'backlog');
-  //   const todos = todosData.filter(todo => todo.status === 'todo');
-  //   const inProgress = todosData.filter(todo => todo.status === 'in-Progress');
-  //   const done = todosData.filter(todo => todo.status === 'done');
-
-  //   setBacklogTodos(backlog);
-  //   setTodos(todos);
-  //   setInProgressToDos(inProgress);
-  //   setDoneTodos(done);
-  // };
+  const [isTodoUpdated, setIsTodoUpdated] = useState(false);
 
   useEffect(() => {
     const todosData = async () => {
@@ -50,9 +38,8 @@ export default function AppProvider({ children }) {
     };
 
     todosData();
-  }, []);
-
-  // console.log(todosData, 'todosData-app context');
+    console.log('isTodoUpdated');
+  }, [isTodoUpdated]);
 
   return (
     <AppContext.Provider
@@ -63,6 +50,7 @@ export default function AppProvider({ children }) {
         inProgressToDos,
         doneTodos,
         userName,
+        setIsTodoUpdated,
       }}
     >
       {children}

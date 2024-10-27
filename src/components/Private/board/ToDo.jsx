@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useAppContext } from '../../../context/AppContext';
 import todoEditIcon from '../../../assets/boardIcons/todoEditIcon.png';
 import lowPriorityIcon from '../../../assets/boardIcons/lowPriorityIcon.png';
 import moderatePriorityIcon from '../../../assets/boardIcons/moderatePriorityIcon.png';
@@ -7,14 +8,28 @@ import assignedToBackground from '../../../assets/boardIcons/assignedToBackgroun
 import collapseList from '../../../assets/boardIcons/collapseList.png';
 import expandList from '../../../assets/boardIcons/expandList.png';
 import AddDate from '../../AddDate';
+import { updateTodoStatus } from '../../../services/api.todos';
 
 export default function ToDo({ todo, collapseAllTodos }) {
   const checked = todo.checklist.filter(item => item.checked === true).length;
   const [isListOpen, setIsListOpen] = useState(false);
+  const { setIsTodoUpdated } = useAppContext();
 
   useEffect(() => {
     setIsListOpen(false);
   }, [collapseAllTodos]);
+
+  const handleTodoStatus = async (todoId, status) => {
+    const res = await updateTodoStatus(todoId, status);
+    if (res.status === 200) {
+      setIsTodoUpdated(prev => !prev);
+    }
+  };
+
+  const getInitials = email => {
+    if (typeof email !== 'string' || !email.includes('@')) return '';
+    return email.slice(0, 2).toUpperCase();
+  };
 
   return (
     <div className='todo-card'>
@@ -38,7 +53,7 @@ export default function ToDo({ todo, collapseAllTodos }) {
           {todo.assignedTo !== '' && (
             <div className='assigned-to'>
               <img src={assignedToBackground} alt='' />
-              <span>{'DM'}</span>
+              <span>{getInitials(todo.assignedTo)}</span>
             </div>
           )}
         </div>
@@ -67,7 +82,7 @@ export default function ToDo({ todo, collapseAllTodos }) {
         {isListOpen && (
           <div className='checklist'>
             {todo.checklist.map(item => (
-              <div key={item.id} className='checklist-item'>
+              <div key={item._id} className='checklist-item'>
                 <input type='checkbox' checked={item.checked} />
                 <span className='checkmark'></span>
                 <div className='checklist-item-description'>
@@ -95,20 +110,36 @@ export default function ToDo({ todo, collapseAllTodos }) {
         )}
         <div className='todo-footer-right-buttons'>
           {todo.status !== 'backlog' && (
-            <div className='todo-backlog todo-chips cursor-pointer'>
+            <div
+              onClick={() => handleTodoStatus(todo._id, 'backlog')}
+              className='todo-backlog todo-chips cursor-pointer'
+            >
               BACKLOG
             </div>
           )}
           {todo.status !== 'todo' && (
-            <div className='todo-todo todo-chips cursor-pointer'>TO-DO</div>
+            <div
+              onClick={() => handleTodoStatus(todo._id, 'todo')}
+              className='todo-todo todo-chips cursor-pointer'
+            >
+              TO-DO
+            </div>
           )}
           {todo.status !== 'in-Progress' && (
-            <div className='todo-inProgress todo-chips cursor-pointer'>
+            <div
+              onClick={() => handleTodoStatus(todo._id, 'in-Progress')}
+              className='todo-inProgress todo-chips cursor-pointer'
+            >
               PROGRESS
             </div>
           )}
           {todo.status !== 'done' && (
-            <div className='todo-done todo-chips cursor-pointer'>DONE</div>
+            <div
+              onClick={() => handleTodoStatus(todo._id, 'done')}
+              className='todo-done todo-chips cursor-pointer'
+            >
+              DONE
+            </div>
           )}
         </div>
       </div>

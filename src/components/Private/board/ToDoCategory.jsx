@@ -46,7 +46,11 @@ export default function ToDoCategory({ categoryHeading, toDos }) {
         className={`todos-section ${!isScrollable ? 'no-scrollbar' : ''}`}
       >
         {toDos.map(todo => (
-          <ToDo key={todo.id} todo={todo} collapseAllTodos={collapseAllTodos} />
+          <ToDo
+            key={todo._id}
+            todo={todo}
+            collapseAllTodos={collapseAllTodos}
+          />
         ))}
       </div>
     </div>
