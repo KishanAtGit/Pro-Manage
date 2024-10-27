@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import todoEditIcon from '../../../assets/boardIcons/todoEditIcon.png';
 import lowPriorityIcon from '../../../assets/boardIcons/lowPriorityIcon.png';
 import moderatePriorityIcon from '../../../assets/boardIcons/moderatePriorityIcon.png';
@@ -6,10 +6,15 @@ import highPriorityIcon from '../../../assets/boardIcons/highPriorityIcon.png';
 import assignedToBackground from '../../../assets/boardIcons/assignedToBackground.png';
 import collapseList from '../../../assets/boardIcons/collapseList.png';
 import expandList from '../../../assets/boardIcons/expandList.png';
+import AddDate from '../../AddDate';
 
-export default function ToDo({ todo }) {
+export default function ToDo({ todo, collapseAllTodos }) {
   const checked = todo.checklist.filter(item => item.checked === true).length;
   const [isListOpen, setIsListOpen] = useState(false);
+
+  useEffect(() => {
+    setIsListOpen(false);
+  }, [collapseAllTodos]);
 
   return (
     <div className='todo-card'>
@@ -46,7 +51,9 @@ export default function ToDo({ todo }) {
         </div>
       </div>
       {/* todo Title */}
-      <div className='todo-title'>{todo.title}</div>
+      <div className='todo-title' title={todo.title}>
+        {todo.title}
+      </div>
       {/* checklist */}
       <div className='todo-checklist'>
         <div className='checklist-heading-section'>
@@ -60,9 +67,9 @@ export default function ToDo({ todo }) {
         {isListOpen && (
           <div className='checklist'>
             {todo.checklist.map(item => (
-              <div className='checklist-item'>
+              <div key={item.id} className='checklist-item'>
                 <input type='checkbox' checked={item.checked} />
-                <span class='checkmark'></span>
+                <span className='checkmark'></span>
                 <div className='checklist-item-description'>
                   {item.description}
                 </div>
@@ -71,7 +78,40 @@ export default function ToDo({ todo }) {
           </div>
         )}
       </div>
-      <div className='todo-footer'></div>
+      <div className='todo-footer'>
+        {todo.dueDate !== '' && (
+          <div
+            style={
+              todo.status === 'done'
+                ? { backgroundColor: '#63C05B', color: 'white' }
+                : todo.priority === 'high'
+                ? { backgroundColor: '#CF3636', color: 'white' }
+                : {}
+            }
+            className='todo-dueDate todo-chips'
+          >
+            <AddDate date={todo.dueDate} />
+          </div>
+        )}
+        <div className='todo-footer-right-buttons'>
+          {todo.status !== 'backlog' && (
+            <div className='todo-backlog todo-chips cursor-pointer'>
+              BACKLOG
+            </div>
+          )}
+          {todo.status !== 'todo' && (
+            <div className='todo-todo todo-chips cursor-pointer'>TO-DO</div>
+          )}
+          {todo.status !== 'in-Progress' && (
+            <div className='todo-inProgress todo-chips cursor-pointer'>
+              PROGRESS
+            </div>
+          )}
+          {todo.status !== 'done' && (
+            <div className='todo-done todo-chips cursor-pointer'>DONE</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

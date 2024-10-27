@@ -21,6 +21,7 @@ export const todosDataFromConstants = [
         checked: true,
       },
     ],
+    dueDate: '10/05/2024',
     status: 'todo',
   },
   {
@@ -55,6 +56,7 @@ export const todosDataFromConstants = [
         checked: false,
       },
     ],
+    dueDate: '',
     status: 'backlog',
   },
   {
@@ -80,11 +82,13 @@ export const todosDataFromConstants = [
         checked: true,
       },
     ],
+    dueDate: '10/05/2024',
     status: 'todo',
   },
   {
     id: 4,
-    title: 'To Do 4',
+    title:
+      'To Do sgv sgiu stg sgihs jgoso usrotg eo e oigt oesoi oest osoitgj oeottgeo jksh wius sruiguieui  eiugi euiiu heihg iueiugh huoeoi o h ksfiuwtsgisi tfeuisuithsuiuiesh 4',
     priority: 'moderate',
     assignedTo: 'UserId',
     checklist: [
@@ -104,6 +108,7 @@ export const todosDataFromConstants = [
         checked: false,
       },
     ],
+    dueDate: '10/05/2024',
     status: 'in-Progress',
   },
   {
@@ -128,6 +133,7 @@ export const todosDataFromConstants = [
         checked: true,
       },
     ],
+    dueDate: '10/05/2024',
     status: 'in-Progress',
   },
   {
@@ -152,6 +158,7 @@ export const todosDataFromConstants = [
         checked: true,
       },
     ],
+    dueDate: '10/05/2024',
     status: 'done',
   },
   {
@@ -176,11 +183,13 @@ export const todosDataFromConstants = [
         checked: true,
       },
     ],
+    dueDate: '10/05/2024',
     status: 'in-Progress',
   },
   {
     id: 8,
-    title: 'To Do 8',
+    title:
+      'To Do 8 - sf sht sghki s sg oiedgoj ee ogj oedgjoedjpj s fwit wihgt ewiuh ew ewgiuhewi',
     priority: 'moderate',
     assignedTo: 'UserId',
     checklist: [
@@ -205,6 +214,7 @@ export const todosDataFromConstants = [
         checked: false,
       },
     ],
+    dueDate: '10/05/2024',
     status: 'todo',
   },
 ];

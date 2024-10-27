@@ -6,6 +6,7 @@ import collapseTodos from '../../../assets/boardIcons/collapseTodos.png';
 export default function ToDoCategory({ categoryHeading, toDos }) {
   console.log(toDos, `todos-${categoryHeading}`);
   const [isScrollable, setIsScrollable] = useState(false);
+  const [collapseAllTodos, setCollapseAllTodos] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -15,6 +16,10 @@ export default function ToDoCategory({ categoryHeading, toDos }) {
       );
     }
   }, [toDos]);
+
+  const onCollapse = () => {
+    setCollapseAllTodos(!collapseAllTodos);
+  };
 
   return (
     <div className='to-do-category-box'>
@@ -32,6 +37,7 @@ export default function ToDoCategory({ categoryHeading, toDos }) {
             className='collapse-todos cursor-pointer'
             src={collapseTodos}
             alt='collapse-todos'
+            onClick={onCollapse}
           />
         </div>
       </div>
@@ -40,7 +46,7 @@ export default function ToDoCategory({ categoryHeading, toDos }) {
         className={`todos-section ${!isScrollable ? 'no-scrollbar' : ''}`}
       >
         {toDos.map(todo => (
-          <ToDo key={todo.id} todo={todo} />
+          <ToDo key={todo.id} todo={todo} collapseAllTodos={collapseAllTodos} />
         ))}
       </div>
     </div>

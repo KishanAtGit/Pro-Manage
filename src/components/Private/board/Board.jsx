@@ -1,6 +1,6 @@
 import { useAppContext } from '../../../context/AppContext';
 import ToDoCategory from './ToDoCategory';
-import CurrentDate from '../../CurrentDate';
+import AddDate from '../../AddDate';
 import peopleOnBoard from '../../../assets/boardIcons/peopleOnBoard.png';
 
 import './BoardStyles.css';
@@ -18,7 +18,9 @@ export default function Board() {
         <span className='cursor-pointer'>Add People</span>
       </div>
       <div className='right-contents'>
-        <CurrentDate />
+        <div style={{ color: '#707070', fontWeight: '500' }}>
+          <AddDate forComponent='board' date={new Date()} />
+        </div>
         <div>week filter</div>
       </div>
       <div className='to-do-section'>
