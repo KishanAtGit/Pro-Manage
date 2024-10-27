@@ -94,7 +94,7 @@ export default function ToDo({ todo, collapseAllTodos }) {
         )}
       </div>
       <div className='todo-footer'>
-        {todo.dueDate !== '' && (
+        {todo.dueDate && (
           <div
             style={
               todo.status === 'done'

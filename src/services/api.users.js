@@ -33,6 +33,7 @@ export const loginUser = async logInData => {
     if (res.status === 202) {
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('userId', res.data.userId);
+      localStorage.setItem('email', res.data.email);
       localStorage.setItem('name', res.data.name);
       notifyOnSuccess(res.data.message);
     }
@@ -45,5 +46,20 @@ export const loginUser = async logInData => {
     notifyOnFail('Error reaching the server');
     // console.log(error);
     return error.response || error;
+  }
+};
+
+export const getAllUsers = async () => {
+  const email = localStorage.getItem('email');
+  try {
+    const res = await apiClient.get(`auth/getAllUsers/${email}`);
+    if (res.status === 200) {
+      return res;
+    }
+  } catch (error) {
+    //default fallback for error
+    notifyOnFail('Error reaching the server');
+    // console.log(error);
+    return error;
   }
 };

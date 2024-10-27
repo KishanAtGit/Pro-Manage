@@ -3,19 +3,42 @@ import ToDo from './ToDo';
 import addTodosIcon from '../../../assets/boardIcons/addTodosIcon.png';
 import collapseTodos from '../../../assets/boardIcons/collapseTodos.png';
 
-export default function ToDoCategory({ categoryHeading, toDos }) {
+export default function ToDoCategory({
+  categoryHeading,
+  toDos,
+  setCreateTodo,
+}) {
   console.log(toDos, `todos-${categoryHeading}`);
   const [isScrollable, setIsScrollable] = useState(false);
   const [collapseAllTodos, setCollapseAllTodos] = useState(false);
   const containerRef = useRef(null);
 
-  useEffect(() => {
+  const checkIfScrollable = () => {
     if (containerRef.current) {
       setIsScrollable(
         containerRef.current.scrollHeight > containerRef.current.clientHeight
       );
     }
-  }, [toDos]);
+  };
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      checkIfScrollable();
+    });
+
+    // Start observing the container for changes
+    if (containerRef.current) {
+      observer.observe(containerRef.current, {
+        childList: true,
+        subtree: true,
+      });
+    }
+
+    // Cleanup observer on component unmount
+    return () => {
+      observer.disconnect();
+    };
+  }, [toDos, collapseAllTodos]);
 
   const onCollapse = () => {
     setCollapseAllTodos(!collapseAllTodos);
@@ -28,6 +51,7 @@ export default function ToDoCategory({ categoryHeading, toDos }) {
         <div className='todo-icons flex-center'>
           {categoryHeading === 'To do' && (
             <img
+              onClick={() => setCreateTodo(true)}
               className='add-todos cursor-pointer'
               src={addTodosIcon}
               alt='add-todos'

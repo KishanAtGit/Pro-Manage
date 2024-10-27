@@ -30,3 +30,22 @@ export const updateTodoStatus = async (todoId, status) => {
     return error;
   }
 };
+
+export const createTodo = async todoData => {
+  const userId = localStorage.getItem('userId');
+
+  try {
+    const res = await apiClient.post('/todo/createTodo', {
+      ...todoData,
+      createdBy: userId,
+    });
+    if (res.status === 201) {
+      notifyOnSuccess(res.data.message);
+    }
+  } catch (error) {
+    //default fallback for error
+    notifyOnFail('Error reaching the server');
+    // console.log(error);
+    return error;
+  }
+};

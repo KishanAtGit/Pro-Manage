@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import { useAppContext } from '../../../context/AppContext';
 import ToDoCategory from './ToDoCategory';
 import AddDate from '../../AddDate';
 import peopleOnBoard from '../../../assets/boardIcons/peopleOnBoard.png';
 
 import './BoardStyles.css';
+import CreateTodoModal from './CreateTodoModal';
 
 export default function Board() {
   const { backlogTodos, todos, inProgressToDos, doneTodos, userName } =
     useAppContext();
+
+  const [createTodo, setCreateTodo] = useState(false);
 
   return (
     <div className='board'>
@@ -25,10 +29,20 @@ export default function Board() {
       </div>
       <div className='to-do-section'>
         <ToDoCategory categoryHeading={'Backlog'} toDos={backlogTodos} />
-        <ToDoCategory categoryHeading={'To do'} toDos={todos} />
+        <ToDoCategory
+          categoryHeading={'To do'}
+          toDos={todos}
+          setCreateTodo={setCreateTodo}
+        />
         <ToDoCategory categoryHeading={'In progress'} toDos={inProgressToDos} />
         <ToDoCategory categoryHeading={'Done'} toDos={doneTodos} />
       </div>
+      {createTodo && (
+        <CreateTodoModal
+          modalIsOpen={createTodo}
+          closeModal={() => setCreateTodo(false)}
+        />
+      )}
     </div>
   );
 }
