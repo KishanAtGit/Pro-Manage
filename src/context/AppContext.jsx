@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { todosDataFromConstants } from '../constants/todosData';
+// import { todosDataFromConstants } from '../constants/todosData';
 import { getTodos } from '../services/api.todos';
+import { useLocation } from 'react-router-dom';
 
 const AppContext = createContext();
 
@@ -25,6 +26,8 @@ export default function AppProvider({ children }) {
 
   const [isTodoUpdated, setIsTodoUpdated] = useState(false);
 
+  const location = useLocation();
+
   useEffect(() => {
     const todosData = async () => {
       const res = await getTodos();
@@ -39,7 +42,7 @@ export default function AppProvider({ children }) {
 
     todosData();
     console.log('isTodoUpdated');
-  }, [isTodoUpdated]);
+  }, [isTodoUpdated, location]);
 
   return (
     <AppContext.Provider
@@ -51,6 +54,7 @@ export default function AppProvider({ children }) {
         doneTodos,
         userName,
         setIsTodoUpdated,
+        location,
       }}
     >
       {children}

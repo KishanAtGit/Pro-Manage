@@ -18,7 +18,6 @@ export const registerUser = async signUpData => {
 
     //default fallback for error
     notifyOnFail('Error reaching the server');
-    // console.log(error);
     return error.response || error;
   }
 };
@@ -44,22 +43,20 @@ export const loginUser = async logInData => {
 
     //default fallback for error
     notifyOnFail('Error reaching the server');
-    // console.log(error);
     return error.response || error;
   }
 };
 
 export const getAllUsers = async () => {
-  const email = localStorage.getItem('email');
+  const userId = localStorage.getItem('userId');
   try {
-    const res = await apiClient.get(`auth/getAllUsers/${email}`);
+    const res = await apiClient.get(`auth/getAllUsers/${userId}`);
     if (res.status === 200) {
       return res;
     }
   } catch (error) {
     //default fallback for error
     notifyOnFail('Error reaching the server');
-    // console.log(error);
     return error;
   }
 };

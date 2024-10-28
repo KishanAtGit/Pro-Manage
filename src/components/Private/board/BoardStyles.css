@@ -144,7 +144,32 @@
 }
 
 .todo-card .todo-heading .todo-heading-right-contents {
+  position: relative;
+}
+
+.todo-card .todo-heading .todo-heading-right-contents .edit-options {
   display: flex;
+  flex-direction: column;
+  gap: 0.8vh;
+  width: 4vw;
+  height: 8vh;
+  background-color: white;
+  border-radius: 0.5em;
+  padding: 1em;
+  box-shadow: 0px 0px 6px 1px #7e7a7a40;
+  position: absolute;
+  right: 0.8vw;
+}
+.todo-card .todo-heading .todo-heading-right-contents .edit-options > div {
+  font-weight: 500;
+}
+.todo-card
+  .todo-heading
+  .todo-heading-right-contents
+  .edit-options
+  > div:hover {
+  color: red;
+  cursor: pointer;
 }
 
 .todo-card .todo-title {
@@ -413,7 +438,7 @@
 .create-todo-modal .checklist .checklist-item .checklist-item-description {
   border: none;
   color: #767575;
-  width: fill-available;
+  width: -webkit-fill-available;
 }
 
 .create-todo-modal

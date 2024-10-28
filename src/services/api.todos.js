@@ -11,7 +11,6 @@ export const getTodos = async () => {
   } catch (error) {
     //default fallback for error
     notifyOnFail('Error reaching the server');
-    // console.log(error);
     return error;
   }
 };
@@ -26,7 +25,20 @@ export const updateTodoStatus = async (todoId, status) => {
   } catch (error) {
     //default fallback for error
     notifyOnFail('Error reaching the server');
-    // console.log(error);
+    return error;
+  }
+};
+
+export const updateChecklist = async (todoId, checklistId) => {
+  try {
+    const res = await apiClient.patch(`/todo/updateChecklist`, {
+      todoId,
+      checklistId,
+    });
+    return res;
+  } catch (error) {
+    //default fallback for error
+    notifyOnFail('Error reaching the server');
     return error;
   }
 };
@@ -45,7 +57,21 @@ export const createTodo = async todoData => {
   } catch (error) {
     //default fallback for error
     notifyOnFail('Error reaching the server');
-    // console.log(error);
+    return error;
+  }
+};
+
+export const deleteTodo = async todoId => {
+  try {
+    const res = await apiClient.delete('/todo/deleteTodo', {
+      data: { todoId },
+    });
+    if (res.status === 200) {
+      notifyOnSuccess(res.data.message);
+    }
+  } catch (error) {
+    //default fallback for error
+    notifyOnFail('Error reaching the server');
     return error;
   }
 };

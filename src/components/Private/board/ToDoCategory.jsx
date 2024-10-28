@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useAppContext } from '../../../context/AppContext';
 import ToDo from './ToDo';
 import addTodosIcon from '../../../assets/boardIcons/addTodosIcon.png';
 import collapseTodos from '../../../assets/boardIcons/collapseTodos.png';
@@ -12,6 +13,7 @@ export default function ToDoCategory({
   const [isScrollable, setIsScrollable] = useState(false);
   const [collapseAllTodos, setCollapseAllTodos] = useState(false);
   const containerRef = useRef(null);
+  const { location } = useAppContext();
 
   const checkIfScrollable = () => {
     if (containerRef.current) {
@@ -32,13 +34,15 @@ export default function ToDoCategory({
         childList: true,
         subtree: true,
       });
+
+      checkIfScrollable();
     }
 
     // Cleanup observer on component unmount
     return () => {
       observer.disconnect();
     };
-  }, [toDos, collapseAllTodos]);
+  }, [toDos, collapseAllTodos, location]);
 
   const onCollapse = () => {
     setCollapseAllTodos(!collapseAllTodos);

@@ -12,7 +12,7 @@ import moderatePriorityIcon from '../../../assets/boardIcons/moderatePriorityIco
 import highPriorityIcon from '../../../assets/boardIcons/highPriorityIcon.png';
 import checkListDeleteIcon from '../../../assets/boardIcons/checkListDeleteIcon.png';
 
-export default function CreateTodoModal({ modalIsOpen, closeModal }) {
+export default function CreateTodoModal({ modalIsOpen, closeModal, todo }) {
   const { customModalStyles, setIsTodoUpdated } = useAppContext();
 
   const {
@@ -22,21 +22,54 @@ export default function CreateTodoModal({ modalIsOpen, closeModal }) {
     reset,
     formState: { errors },
   } = useForm();
-  const [priority, setPriority] = useState(''); // Priority state
-  const [checklistItems, setChecklistItems] = useState([]); // Checklist items state
-  const [dueDate, setDueDate] = useState(null); // Due date state
-  const [calendarOpen, setCalendarOpen] = useState(false); // Calendar visibility state
-  const [userIds, setUserIds] = useState([]); // User IDs state
+  const [priority, setPriority] = useState(todo?.priority || '');
+  const [checklistItems, setChecklistItems] = useState(todo?.checklist || []);
+  const [dueDate, setDueDate] = useState(
+    todo?.dueDate ? new Date(todo.dueDate) : null
+  );
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [userList, setUserList] = useState([]);
+
+  useEffect(() => {
+    const getUserIds = async () => {
+      const res = await getAllUsers();
+      if (res.status === 200) {
+        setUserList(res.data.userList);
+      }
+    };
+
+    getUserIds();
+  }, []);
+
+  useEffect(() => {
+    if (todo && userList.length > 0) {
+      reset({
+        title: todo.title,
+        priority: todo.priority,
+        assignedTo: todo.assignedTo?.userId || '',
+        checklist: todo.checklist,
+        dueDate: todo.dueDate,
+      });
+      setPriority(todo.priority);
+      setChecklistItems(todo.checklist);
+      setDueDate(todo.dueDate ? new Date(todo.dueDate) : null);
+    }
+  }, [todo, reset, userList]);
 
   const onSubmit = async data => {
-    console.log(data);
     reset();
     setChecklistItems([]);
     setPriority('');
     setDueDate(null);
-    await createTodo(data);
+    const selectedUser = userList.find(user => user.userId === data.assignedTo);
+    const formattedData = {
+      ...data,
+      assignedTo: selectedUser || null,
+    };
+    await createTodo(formattedData);
     setIsTodoUpdated(prev => !prev);
     closeModal();
+    console.log(formattedData, 'data');
   };
 
   const handlePrioritySelection = selectedPriority => {
@@ -49,8 +82,6 @@ export default function CreateTodoModal({ modalIsOpen, closeModal }) {
   };
 
   const handleDeteChecklistItem = index => {
-    console.log(index, checklistItems[index], 'index');
-
     const updatedChecklistItems = checklistItems.filter((_, i) => i !== index);
 
     setChecklistItems(updatedChecklistItems);
@@ -66,19 +97,6 @@ export default function CreateTodoModal({ modalIsOpen, closeModal }) {
     }
     setCalendarOpen(false);
   };
-
-  useEffect(() => {
-    const getUserIds = async () => {
-      const res = await getAllUsers();
-      if (res.status === 200) {
-        setUserIds(res.data.emails);
-      }
-    };
-
-    getUserIds();
-  }, []);
-
-  console.log(userIds, 'userIds');
 
   return (
     <Modal
@@ -170,9 +188,9 @@ export default function CreateTodoModal({ modalIsOpen, closeModal }) {
             <label>Assign to</label>
             <select className='assigned-to-select' {...register('assignedTo')}>
               <option value=''>Add a assignee</option>
-              {userIds.map(userId => (
-                <option key={userId} value={userId}>
-                  {userId}
+              {userList.map(user => (
+                <option key={user.userId} value={user.userId}>
+                  {user.email}
                 </option>
               ))}
             </select>
@@ -197,7 +215,6 @@ export default function CreateTodoModal({ modalIsOpen, closeModal }) {
                   type='checkbox'
                   {...register(`checklist[${index}].checked`)}
                   defaultChecked={false}
-                  disabled
                 />
                 <input
                   type='text'
