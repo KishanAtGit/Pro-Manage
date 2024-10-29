@@ -43,6 +43,19 @@ export const updateChecklist = async (todoId, checklistId) => {
   }
 };
 
+export const updateTodo = async todoData => {
+  try {
+    const res = await apiClient.patch('/todo/updateTodo', todoData);
+    if (res.status === 200) {
+      notifyOnSuccess(res.data.message);
+    }
+  } catch (error) {
+    //default fallback for error
+    notifyOnFail('Error reaching the server');
+    return error;
+  }
+};
+
 export const createTodo = async todoData => {
   const userId = localStorage.getItem('userId');
 

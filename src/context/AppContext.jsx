@@ -26,10 +26,13 @@ export default function AppProvider({ children }) {
 
   const [isTodoUpdated, setIsTodoUpdated] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const location = useLocation();
 
   useEffect(() => {
     const todosData = async () => {
+      setIsLoading(true);
       const res = await getTodos();
       if (res.status === 200) {
         const { backlog, todos, inProgress, done } = res.data;
@@ -37,6 +40,7 @@ export default function AppProvider({ children }) {
         setTodos(todos);
         setInProgressToDos(inProgress);
         setDoneTodos(done);
+        setIsLoading(false);
       }
     };
 
@@ -55,6 +59,7 @@ export default function AppProvider({ children }) {
         userName,
         setIsTodoUpdated,
         location,
+        isLoading,
       }}
     >
       {children}

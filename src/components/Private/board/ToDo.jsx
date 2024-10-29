@@ -27,6 +27,10 @@ export default function ToDo({ todo, collapseAllTodos }) {
   const { setIsTodoUpdated } = useAppContext();
 
   useEffect(() => {
+    setCheckList(todo.checklist);
+  }, [todo]);
+
+  useEffect(() => {
     setIsListOpen(false);
   }, [collapseAllTodos]);
 
@@ -121,7 +125,11 @@ export default function ToDo({ todo, collapseAllTodos }) {
           <div className='checklist'>
             {checkList.map(item => (
               <div key={item._id} className='checklist-item'>
-                <input type='checkbox' defaultChecked={item.checked} />
+                <input
+                  type='checkbox'
+                  checked={item.checked}
+                  onChange={() => {}}
+                />
                 <span
                   className='checkmark'
                   onClick={async () => {
@@ -130,7 +138,7 @@ export default function ToDo({ todo, collapseAllTodos }) {
                         i._id === item._id ? { ...i, checked: !i.checked } : i
                       )
                     );
-                    await updateChecklist(todo._id, item._id);
+                    updateChecklist(todo._id, item._id);
                   }}
                 ></span>
                 <div className='checklist-item-description'>
@@ -210,6 +218,7 @@ export default function ToDo({ todo, collapseAllTodos }) {
           modalIsOpen={isTodoEditModalOpen}
           closeModal={() => setIsTodoEditModalOpen(false)}
           todo={todo}
+          checkList={checkList}
         />
       )}
     </div>

@@ -2,7 +2,7 @@ import { useAppContext } from '../../../context/AppContext';
 import { getAllUsers } from '../../../services/api.users';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { createTodo } from '../../../services/api.todos';
+import { createTodo, updateTodo } from '../../../services/api.todos';
 import Modal from 'react-modal';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -12,7 +12,12 @@ import moderatePriorityIcon from '../../../assets/boardIcons/moderatePriorityIco
 import highPriorityIcon from '../../../assets/boardIcons/highPriorityIcon.png';
 import checkListDeleteIcon from '../../../assets/boardIcons/checkListDeleteIcon.png';
 
-export default function CreateTodoModal({ modalIsOpen, closeModal, todo }) {
+export default function CreateTodoModal({
+  modalIsOpen,
+  closeModal,
+  todo,
+  checkList,
+}) {
   const { customModalStyles, setIsTodoUpdated } = useAppContext();
 
   const {
@@ -29,6 +34,8 @@ export default function CreateTodoModal({ modalIsOpen, closeModal, todo }) {
   );
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [userList, setUserList] = useState([]);
+  const checked = checklistItems.filter(item => item.checked === true).length;
+  console.log(checklistItems, checked, 'checklistItems');
 
   useEffect(() => {
     const getUserIds = async () => {
@@ -47,27 +54,41 @@ export default function CreateTodoModal({ modalIsOpen, closeModal, todo }) {
         title: todo.title,
         priority: todo.priority,
         assignedTo: todo.assignedTo?.userId || '',
-        checklist: todo.checklist,
+        checklist: checkList,
         dueDate: todo.dueDate,
       });
       setPriority(todo.priority);
-      setChecklistItems(todo.checklist);
+      setChecklistItems(checkList);
       setDueDate(todo.dueDate ? new Date(todo.dueDate) : null);
     }
-  }, [todo, reset, userList]);
+  }, [todo, reset, userList, checkList]);
 
   const onSubmit = async data => {
+    let formattedData;
+    const selectedUser = userList.find(user => user.userId === data.assignedTo);
+
+    if (todo) {
+      //for todo updation
+      formattedData = {
+        ...data,
+        assignedTo: selectedUser || null,
+        todoId: todo._id,
+      };
+      await updateTodo(formattedData);
+      setIsTodoUpdated(prev => !prev);
+    } else {
+      //for todo creation
+      formattedData = {
+        ...data,
+        assignedTo: selectedUser || null,
+      };
+      await createTodo(formattedData);
+      setIsTodoUpdated(prev => !prev);
+    }
     reset();
     setChecklistItems([]);
     setPriority('');
     setDueDate(null);
-    const selectedUser = userList.find(user => user.userId === data.assignedTo);
-    const formattedData = {
-      ...data,
-      assignedTo: selectedUser || null,
-    };
-    await createTodo(formattedData);
-    setIsTodoUpdated(prev => !prev);
     closeModal();
     console.log(formattedData, 'data');
   };
@@ -198,7 +219,8 @@ export default function CreateTodoModal({ modalIsOpen, closeModal, todo }) {
 
           <div className='checklist'>
             <label>
-              Checklist <span style={{ color: 'red' }}>*</span>
+              {`CheckList (${checked}/${checklistItems.length})`}{' '}
+              <span style={{ color: 'red' }}>*</span>
             </label>
             <div
               className='add-checklist-button'
@@ -214,7 +236,6 @@ export default function CreateTodoModal({ modalIsOpen, closeModal, todo }) {
                 <input
                   type='checkbox'
                   {...register(`checklist[${index}].checked`)}
-                  defaultChecked={false}
                 />
                 <input
                   type='text'

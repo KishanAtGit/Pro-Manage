@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAppContext } from '../../../context/AppContext';
 import ToDo from './ToDo';
+import CardLoader from '../../../utils/loaders/CardLoader';
 import addTodosIcon from '../../../assets/boardIcons/addTodosIcon.png';
 import collapseTodos from '../../../assets/boardIcons/collapseTodos.png';
 
@@ -13,7 +14,7 @@ export default function ToDoCategory({
   const [isScrollable, setIsScrollable] = useState(false);
   const [collapseAllTodos, setCollapseAllTodos] = useState(false);
   const containerRef = useRef(null);
-  const { location } = useAppContext();
+  const { location, isLoading } = useAppContext();
 
   const checkIfScrollable = () => {
     if (containerRef.current) {
@@ -69,18 +70,25 @@ export default function ToDoCategory({
           />
         </div>
       </div>
-      <div
-        ref={containerRef}
-        className={`todos-section ${!isScrollable ? 'no-scrollbar' : ''}`}
-      >
-        {toDos.map(todo => (
-          <ToDo
-            key={todo._id}
-            todo={todo}
-            collapseAllTodos={collapseAllTodos}
-          />
-        ))}
-      </div>
+      {isLoading ? (
+        <>
+          <CardLoader />
+          <CardLoader />
+        </>
+      ) : (
+        <div
+          ref={containerRef}
+          className={`todos-section ${!isScrollable ? 'no-scrollbar' : ''}`}
+        >
+          {toDos.map(todo => (
+            <ToDo
+              key={todo._id}
+              todo={todo}
+              collapseAllTodos={collapseAllTodos}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
