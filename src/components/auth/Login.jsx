@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../services/api.users';
 import { useAuth } from '../../context/AuthContext';
-import AuthForm from './AuthForm';
+import Form from '../Form';
 
 import emailIcon from '../../assets/loginPageIcons/emailIcon.png';
 import lockIcon from '../../assets/loginPageIcons/lockIcon.png';
@@ -40,7 +40,7 @@ export default function Login() {
   return (
     <>
       <div className='heading'>Login</div>
-      <AuthForm onSubmit={onSubmit} fields={loginFields} buttonLabel='Login' />
+      <Form onSubmit={onSubmit} fields={loginFields} buttonLabel='Login' />
       <div style={{ fontSize: '1.2em', fontWeight: '300' }}>
         Have no account yet ?
       </div>

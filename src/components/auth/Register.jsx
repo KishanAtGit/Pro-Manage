@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import AuthForm from './AuthForm';
+import Form from '../Form';
 import { registerUser } from '../../services/api.users';
 
 import nameIcon from '../../assets/loginPageIcons/nameIcon.png';
@@ -60,7 +60,7 @@ export default function Register() {
   return (
     <>
       <div className='heading'>Register</div>
-      <AuthForm
+      <Form
         onSubmit={onSubmit}
         fields={registerFields}
         buttonLabel='Register'

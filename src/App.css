@@ -98,3 +98,64 @@
   width: 11vw;
   font-weight: 600;
 }
+
+/* analytics page */
+
+.analytics,
+.settings {
+  padding: 3em;
+  font-family: 'Open Sans';
+}
+
+.analytics .heading,
+.settings .heading {
+  font-size: 2em;
+  font-weight: 500;
+  margin-bottom: 2vh;
+}
+
+.analytics .analytics-contents {
+  display: flex;
+  gap: 2vw;
+}
+
+.analytics .analytics-contents .left-container,
+.analytics .analytics-contents .right-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  width: 20vw;
+  background-color: #f9fcff;
+  padding: 2.5em;
+  border-radius: 0.7em;
+}
+
+.analytics .analytics-contents .left-container > div,
+.analytics .analytics-contents .right-container > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20vw;
+}
+
+.analytics .list-icon {
+  height: 1.3vh;
+  margin-right: 0.7vw;
+}
+
+.analytics .list-title {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.analytics .list-data {
+  font-size: 1.7em;
+  font-weight: 600;
+}
+
+.settings {
+  display: flex;
+  width: 35vw;
+  flex-direction: column;
+  gap: 3vh;
+}

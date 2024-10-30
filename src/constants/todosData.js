@@ -218,3 +218,51 @@ export const todosDataFromConstants = [
     status: 'todo',
   },
 ];
+
+// {
+//   "_id": {
+//     "$oid": "6720a6f71510ec16fc448245"
+//   },
+//   "title": "New Task 8777(updated)",
+//   "priority": "moderate",
+//   "assignedTo": {
+//     "userId": "671397ad9a2567a56efe8f78",
+//     "email": "newUser99@gmail.com"
+//   },
+//   "checklist": [
+//     {
+//       "description": "task 4",
+//       "checked": true,
+//       "_id": {
+//         "$oid": "6720d2721e7d9c5b27fa8778"
+//       }
+//     },
+//     {
+//       "description": "task 5",
+//       "checked": false,
+//       "_id": {
+//         "$oid": "6720d8791e7d9c5b27faa6e3"
+//       }
+//     },
+//     {
+//       "description": "task 6",
+//       "checked": false,
+//       "_id": {
+//         "$oid": "6720dd171e7d9c5b27faa9dc"
+//       }
+//     },
+//     {
+//       "description": "task 7",
+//       "checked": false,
+//       "_id": {
+//         "$oid": "6720de3c1e7d9c5b27faaad8"
+//       }
+//     }
+//   ],
+//   "dueDate": "11/12/2024",
+//   "status": "todo",
+//   "createdBy": "671e1be294f3ac7bf6fe3a77",
+//   "accessors": [],
+//   "createdAt": "2024-10-29T09:12:23.937Z",
+//   "__v": 11
+// }

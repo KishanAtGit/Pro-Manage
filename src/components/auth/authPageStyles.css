@@ -64,7 +64,7 @@
   color: #343434;
 }
 
-.auth-section > form {
+form {
   margin-top: 3vh;
   flex-direction: column;
   gap: 2.5vh;
