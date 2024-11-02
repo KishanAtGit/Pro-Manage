@@ -23,30 +23,40 @@ export default function AppProvider({ children }) {
   const [todos, setTodos] = useState([]);
   const [inProgressToDos, setInProgressToDos] = useState([]);
   const [doneTodos, setDoneTodos] = useState([]);
+  const [analyticsData, setAnalyticsData] = useState([]);
 
   const [isTodoUpdated, setIsTodoUpdated] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [todoFilter, setTodoFilter] = useState('thisWeek');
 
   const location = useLocation();
 
   useEffect(() => {
     const todosData = async () => {
       setIsLoading(true);
-      const res = await getTodos();
+      let res;
+      if (location.pathname === '/dashboard/analytics') {
+        const params = { analytics: true };
+        res = await getTodos(params);
+      } else {
+        res = await getTodos({ filter: todoFilter });
+      }
+
       if (res.status === 200) {
-        const { backlog, todos, inProgress, done } = res.data;
+        const { backlog, todos, inProgress, done, analytics } = res.data;
         setBacklogTodos(backlog);
         setTodos(todos);
         setInProgressToDos(inProgress);
         setDoneTodos(done);
+        setAnalyticsData(analytics);
         setIsLoading(false);
       }
     };
 
     todosData();
-    console.log('isTodoUpdated');
-  }, [isTodoUpdated, location]);
+  }, [isTodoUpdated, location.pathname, todoFilter]);
 
   return (
     <AppContext.Provider
@@ -56,10 +66,13 @@ export default function AppProvider({ children }) {
         todos,
         inProgressToDos,
         doneTodos,
+        analyticsData,
         userName,
         setIsTodoUpdated,
         location,
         isLoading,
+        setTodoFilter,
+        todoFilter,
       }}
     >
       {children}

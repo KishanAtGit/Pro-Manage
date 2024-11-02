@@ -1,10 +1,12 @@
 import apiClient from '../axios.config';
 import { notifyOnFail, notifyOnSuccess } from '../utils/toast';
 
-export const getTodos = async () => {
+export const getTodos = async params => {
   const userId = localStorage.getItem('userId');
   try {
-    const res = await apiClient.get(`/todo/${userId}`);
+    const res = await apiClient.get(`/todo/${userId}`, {
+      params: params ? params : {},
+    });
     if (res.status === 200) {
       return res;
     }

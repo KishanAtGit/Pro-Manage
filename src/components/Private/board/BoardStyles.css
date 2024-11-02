@@ -44,6 +44,25 @@
   text-align: right;
 }
 
+.board .right-contents .week-filter {
+  position: fixed;
+  right: 3.5vw;
+  top: 12.5vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vh;
+  text-align: left;
+  font-size: 1em;
+  font-weight: 500;
+  color: #5b5b5b;
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  padding: 1em;
+  box-shadow: 0px 0px 4px 1px #4d40551a;
+  border-radius: 0.7em;
+}
+
 .board .to-do-section {
   margin-top: 15vh;
   width: fit-content;

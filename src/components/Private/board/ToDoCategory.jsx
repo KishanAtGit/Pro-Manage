@@ -10,7 +10,7 @@ export default function ToDoCategory({
   toDos,
   setCreateTodo,
 }) {
-  console.log(toDos, `todos-${categoryHeading}`);
+  // console.log(toDos, `todos-${categoryHeading}`);
   const [isScrollable, setIsScrollable] = useState(false);
   const [collapseAllTodos, setCollapseAllTodos] = useState(false);
   const containerRef = useRef(null);
